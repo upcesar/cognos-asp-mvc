@@ -161,6 +161,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609131942203_InitialCreate.cs" />
+    <Compile Include="Migrations\201609131942203_InitialCreate.Designer.cs">
+      <DependentUpon>201609131942203_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cargos.cs" />
     <Compile Include="Models\Contatos.cs" />
     <Compile Include="Models\Empresas.cs" />
@@ -444,6 +449,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Empresas\Index.cshtml" />
     <Content Include="Views\Empresas\Create.cshtml" />
+    <Content Include="Views\Empresas\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -456,6 +462,11 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201609131942203_InitialCreate.resx">
+      <DependentUpon>201609131942203_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

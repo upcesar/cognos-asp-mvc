@@ -13,8 +13,8 @@ namespace cognossystem_testes.Models
         public string Telefone { get; set; }
         public string Celular { get; set; }
         public Status Status { get; set; }
-        public DateTime Data_Inclusao { get; set; }
-        public DateTime Data_Ultima_alteracao { get; set; }
+        public DateTime? Data_Inclusao { get; set; }
+        public DateTime? Data_Ultima_alteracao { get; set; }
 
     }
 }

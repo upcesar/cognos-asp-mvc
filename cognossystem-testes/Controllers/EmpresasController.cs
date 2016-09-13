@@ -3,6 +3,7 @@ using cognossystem_testes.DAL;
 using cognossystem_testes.Models;
 using System.Linq;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace cognossystem_testes.Controllers
 {
@@ -57,7 +58,18 @@ namespace cognossystem_testes.Controllers
         // GET: Empresas/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Empresas Model = new Empresas();
+            using (var db = new CognosDataContext())
+            {
+                var q = from e in db.Empresas
+                        where e.ID == id
+                        select e;
+
+                Model = q.FirstOrDefault();                
+                
+            }
+
+            return View(Model);
         }
 
         // POST: Empresas/Edit/5
@@ -67,10 +79,20 @@ namespace cognossystem_testes.Controllers
             try
             {
                 // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    Empresa.Data_Ultima_Alteracao = DateTime.Now;
+                    using (var db = new CognosDataContext())
+                    {
+                        db.Entry(Empresa).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    return RedirectToAction("Index");
+                }
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }
