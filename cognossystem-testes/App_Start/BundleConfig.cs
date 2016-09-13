@@ -14,6 +14,12 @@ namespace cognossystem_testes
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jQueryDatatable").Include(
+                        "~/Scripts/DataTables/jquery.dataTables.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/myJavaScripts").Include(
+                                    "~/Scripts/custom/myJavaScripts.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -25,6 +31,7 @@ namespace cognossystem_testes
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/DataTables/css/dataTables.jqueryui.min.css",
                       "~/Content/site.css"));
         }
     }
