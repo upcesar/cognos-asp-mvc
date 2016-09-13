@@ -1,8 +1,7 @@
-﻿using cognossystem_testes.DAL;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using cognossystem_testes.DAL;
+using cognossystem_testes.Models;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace cognossystem_testes.Controllers
@@ -22,12 +21,6 @@ namespace cognossystem_testes.Controllers
                 
         }
 
-        // GET: Empresas/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: Empresas/Create
         public ActionResult Create()
         {
@@ -36,13 +29,24 @@ namespace cognossystem_testes.Controllers
 
         // POST: Empresas/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Empresas Empresa)
         {
             try
             {
                 // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    Empresa.Data_Inclusao = DateTime.Now;
+                    using (var db = new CognosDataContext())
+                    {
+                        db.Empresas.Add(Empresa);
+                        db.SaveChanges();                        
+                    }
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+
+                return View();
             }
             catch
             {
@@ -58,7 +62,7 @@ namespace cognossystem_testes.Controllers
 
         // POST: Empresas/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Empresas Empresa)
         {
             try
             {
