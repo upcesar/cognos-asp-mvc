@@ -25,6 +25,13 @@
         }
     });
 
+    $("#filterStatus").on("change", function (e) {
+
+        var urlFilter = "/" + $(this).data("controller") + "/Filter/" + $(this).val();
+        window.location.href = urlFilter;
+
+    });
+
     $(".btn-delete").on("click", function (e) {
 
         var deleteLink = $(this).attr("href");

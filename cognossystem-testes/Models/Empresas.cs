@@ -18,4 +18,5 @@ namespace cognossystem_testes.Models
         public DateTime? Data_Ultima_Alteracao { get; set; }
         public virtual List<Contatos> Contatos { get; set; }
     }
+
 }

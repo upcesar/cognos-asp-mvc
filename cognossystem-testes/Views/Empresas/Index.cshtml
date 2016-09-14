@@ -1,13 +1,23 @@
 ﻿@model IEnumerable<cognossystem_testes.Models.Empresas>
 
 @{
+    var statusList = ViewBag.StatusList as List<SelectListItem>;
     ViewBag.Title = "Empresas";
 }
 
-<h2>Index</h2>
+<h2>Lista de @ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Novo", "Create")
+    <div class="row">
+        <div class="col-md-6">
+            @Html.ActionLink("Novo", "Create")
+        </div>
+        <div class="col-md-6 text-right">
+            @Html.DropDownList("filterStatus", statusList, new { @class = "form-control", data_controller = "Empresas" })            
+            
+        </div>
+    </div>
+
 </p>
 <table class="table dataTable">
     <thead>
@@ -57,7 +67,7 @@
                     @Html.DisplayFor(modelItem => item.Data_Ultima_Alteracao)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.ID }, new { @class = "btn btn-default" }) 
+                    @Html.ActionLink("Editar", "Edit", new { id = item.ID }, new { @class = "btn btn-default" })
                     @Html.ActionLink("Excluir", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-delete" })
                 </td>
             </tr>

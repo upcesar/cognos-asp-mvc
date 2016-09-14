@@ -1,6 +1,7 @@
 ﻿using System;
 using cognossystem_testes.DAL;
 using cognossystem_testes.Models;
+using cognossystem_testes.Helpers;
 using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
@@ -13,13 +14,31 @@ namespace cognossystem_testes.Controllers
         public ActionResult Index()
         {
             var db = new CognosDataContext();
-            
+
             var Model = from e in db.Empresas
-                        where e.Status == Models.Status.Cadastrado
+                        where e.Status == Status.Cadastrado
                         select e;
 
-            return View(Model);            
+            ViewBag.StatusList = Miscellaneous.GetStatusSelectListItems("Cadastrado");
+
+            return View(Model);
                 
+        }
+
+        public ActionResult Filter(string strStatus)
+        {
+            var selectedStatus = Miscellaneous.ParseEnum<Status>(strStatus, Status.Cadastrado);
+
+            var db = new CognosDataContext();
+            
+            var Model = from e in db.Empresas
+                        where e.Status == selectedStatus
+                        select e;
+
+            ViewBag.StatusList = Miscellaneous.GetStatusSelectListItems(strStatus);
+
+            return View("Index", Model);
+
         }
 
         // GET: Empresas/Create
@@ -38,6 +57,7 @@ namespace cognossystem_testes.Controllers
                 if (ModelState.IsValid)
                 {
                     Empresa.Data_Inclusao = DateTime.Now;
+                    Empresa.Status = Status.Cadastrado;
                     using (var db = new CognosDataContext())
                     {
                         db.Empresas.Add(Empresa);
