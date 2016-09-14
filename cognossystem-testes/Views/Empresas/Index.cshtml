@@ -57,8 +57,8 @@
                     @Html.DisplayFor(modelItem => item.Data_Ultima_Alteracao)
                 </td>
                 <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Excluir", "Delete", new { id = item.ID })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.ID }, new { @class = "btn btn-default" }) 
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-delete" })
                 </td>
             </tr>
         }

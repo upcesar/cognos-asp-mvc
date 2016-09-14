@@ -25,4 +25,32 @@
         }
     });
 
+    $(".btn-delete").on("click", function (e) {
+
+        var deleteLink = $(this).attr("href");
+
+        e.preventDefault();
+        
+        bootbox.confirm({
+            buttons: {
+                cancel: {
+                    label: 'Cancelar',
+                    className: 'btn-default'
+                },
+                confirm: {
+                    label: 'OK',
+                    className: 'btn-danger'
+                },
+            },
+            message: 'Tem certeza de excluir este registro?',
+            callback: function (result) {
+                if (result == true) {
+                    window.location.href = deleteLink;
+                }
+
+            },
+            title: "Atenção",
+        });
+    });
+
 });
