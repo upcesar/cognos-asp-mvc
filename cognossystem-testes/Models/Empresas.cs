@@ -16,7 +16,7 @@ namespace cognossystem_testes.Models
         public DateTime? Data_Inclusao { get; set; }
 
         public DateTime? Data_Ultima_Alteracao { get; set; }
-        public virtual List<Contatos> Contatos { get; set; }
+        public virtual ICollection<Contatos> Contatos { get; set; }
     }
 
 }
