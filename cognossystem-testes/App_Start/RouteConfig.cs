@@ -16,7 +16,7 @@ namespace cognossystem_testes
             routes.MapRoute(
                 name: "Filter",
                 url: "{controller}/{action}/{strStatus}",
-                defaults: new { controller = "Empresas", action = "Filter", strStatus = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", strStatus = UrlParameter.Optional }
             );
 
             routes.MapRoute(
