@@ -20,6 +20,7 @@ namespace cognossystem_testes.Controllers
                         select e;
 
             ViewBag.StatusList = Miscellaneous.GetStatusSelectListItems("Cadastrado");
+            ViewBag.SelectedStatus = Status.Cadastrado;
 
             return View(Model);
                 
@@ -36,6 +37,7 @@ namespace cognossystem_testes.Controllers
                         select e;
 
             ViewBag.StatusList = Miscellaneous.GetStatusSelectListItems(strStatus);
+            ViewBag.SelectedStatus = selectedStatus;
 
             return View("Index", Model);
 

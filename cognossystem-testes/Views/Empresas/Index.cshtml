@@ -2,6 +2,8 @@
 
 @{
     var statusList = ViewBag.StatusList as List<SelectListItem>;
+    var selectedStatus = ViewBag.SelectedStatus;
+
     ViewBag.Title = "Empresas";
 }
 
@@ -13,8 +15,8 @@
             @Html.ActionLink("Novo", "Create")
         </div>
         <div class="col-md-6 text-right">
-            @Html.DropDownList("filterStatus", statusList, new { @class = "form-control", data_controller = "Empresas" })            
-            
+            @Html.DropDownList("filterStatus", statusList, new { @class = "form-control", data_controller = "Empresas" })
+
         </div>
     </div>
 
@@ -66,13 +68,22 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Data_Ultima_Alteracao)
                 </td>
+                
+                @if (selectedStatus == cognossystem_testes.Models.Status.Cadastrado)
+                {
+                    <td>                        
+                        @Html.ActionLink("Editar", "Edit", new { id = item.ID }, new { @class = "btn btn-default" })
+                        @Html.ActionLink("Excluir", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-delete" })
+                    </td>
+                }
+                else
+                {
                 <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = item.ID }, new { @class = "btn btn-default" })
-                    @Html.ActionLink("Excluir", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-delete" })
+                    @Html.ActionLink("Mudar Status", "ChangeStatus", new { id = item.ID }, new { @class = "btn btn-default" })
                 </td>
+                }
             </tr>
         }
     </tbody>
 
 </table>
-
