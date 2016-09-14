@@ -101,7 +101,34 @@ namespace cognossystem_testes.Controllers
         // GET: Empresas/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            using (var db = new CognosDataContext())
+            {
+                var q = from e in db.Empresas
+                        where e.ID == id
+                        select e;
+
+                Empresas empresa = q.FirstOrDefault();
+
+                if (empresa.ID == id)
+                {
+                    try
+                    {
+                        empresa.Status = Status.Excluída;
+                        db.Entry(empresa).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    catch
+                    {
+                        
+                    }                    
+
+                }
+
+            }
+
+            return RedirectToAction("Index");
+
+
         }
 
         // POST: Empresas/Delete/5
